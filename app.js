@@ -114,4 +114,4 @@ app.post('/task', function(req, res){
 		res.send('Logout successful')
 	})
 })
-app.listen(PORT, function(){ console.log(`Server started at port ${port}`)})
+app.listen(port, function(){ console.log(`Server started at port ${port}`)})
