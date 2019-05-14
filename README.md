@@ -3,7 +3,7 @@ This is a To-Do List App built With Express Framework
 ## Available Endpoints
 * **"/"** : This is the endpoint for the Homepage
 
-* **"/signup"** : METHOD **POST**. This is the endpoint for user to register.
+* **"/signup"** : METHOD **POST**. This is the endpoint for user to sign up.
 	* **Request Object**:
 		* firstName : Type(String)
 		* lastName : Type(String)
@@ -37,7 +37,7 @@ This is a To-Do List App built With Express Framework
 		* username : Type(String)
 		* password : Type(String)
 
-* "/task" : METHOD **POST**. This is the endpoint for user to add tasks.
+* **"/task"** : METHOD **POST**. This is the endpoint for user to add task.
 	* **Request Object**:
 		* taskName : Type(String)
 		* time : Type(String)
@@ -51,3 +51,28 @@ This is a To-Do List App built With Express Framework
 		* description : Type(String)
 		* isCompleted : Type(Boolean)
 		* reminderTime : Type(Number)
+
+* **"/update/:taskId"** : METHOD **PUT**. This is the endpoint for user to update task.
+	* **Request Object**:
+		* taskName : Type(String)
+		* time : Type(String)
+		* description : Type(String)
+		* isCompleted : Type(Boolean)
+		* reminderTime : Type(Number)
+
+	* **Response Object**:
+		* taskName : Type(String)
+		* time : Type(String)
+		* description : Type(String)
+		* isCompleted : Type(Boolean)
+		* reminderTime : Type(Number)
+
+* **"/delete/:taskId"** : METHOD **DELETE**. This is the endpoint for user to delete task.
+
+	* **Response Object**:
+		* "Task Deleted!"
+
+* **"/logout"** : METHOD **GET**. This is the endpoint for user to logout.
+
+	* **Response Object**:
+		* "Logout successful"
