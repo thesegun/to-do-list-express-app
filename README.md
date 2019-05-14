@@ -2,8 +2,8 @@ This is a To-Do List App built With Express Framework
 
 
 ### Deployment 
-			[Github](https://github.com/thesegun/to-do-list-express-app)
-			[Heroku](https://my-to-do-express-app.herokuapp.com/)
+[Github](https://github.com/thesegun/to-do-list-express-app)
+[Heroku](https://my-to-do-express-app.herokuapp.com/)
 
 ### Available Endpoints
 * **"/"** : This is the endpoint for the Homepage
