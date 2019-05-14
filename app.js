@@ -1,8 +1,9 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var app = express()
-var port = 5000 || process.env.port
 var mongoose = require('mongoose')
+
+const port = process.env.PORT || 5000
 
 let uri = "mongodb+srv://thesegun:layomaserati@expressapp-cplmn.mongodb.net/expressapp?retryWrites=true"
 
@@ -113,4 +114,4 @@ app.post('/task', function(req, res){
 		res.send('Logout successful')
 	})
 })
-app.listen(port, function(){ console.log(`Server started at port ${port}`)})
+app.listen(PORT, function(){ console.log(`Server started at port ${port}`)})
