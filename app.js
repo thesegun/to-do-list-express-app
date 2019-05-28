@@ -27,6 +27,12 @@ var Task = require('./model/task')
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
  
 // parse application/json
 app.use(bodyParser.json())
@@ -41,12 +47,12 @@ app.post('/signup', function(req, res){
 	//then save the data inside the database
 	var saveSignUpData = new SignUp(req.body)
 	saveSignUpData.save(function(err, dataSignUp){
-		if (err) {res.send(err)}
+		if (err) {res.json({err})}
 			else{
 				var saveLoginData = new Login({username : req.body.username, password : req.body.password})
 
 				saveLoginData.save(function(err, data){
-					if (err) {res.send(err)}
+					if (err) {res.json(err)}
 						else{res.json(dataSignUp)}
 				})
 			}
@@ -59,14 +65,18 @@ app.post('/login', function(req, res){
 	var loginData = req.body
 	//check if the login credentials is correct in your database
 	Login.find({username: req.body.username, password: req.body.password}, function(err, data){
-		if (err) {res.send(err)}
+		if (err) {res.json({err})}
 			else{
 				console.log(data)
 				if (data[0]) {
-					res.send('Login successful')
+					res.json({
+						text: 'Login successful'
+					})
 				}
 				else{
-					res.send('User does not exist!')
+					res.json({
+						text: 'User does not exist!'
+					})
 				}
 	}
 })
@@ -77,7 +87,7 @@ app.post('/task', function(req, res){
 
 	var saveTaskData = new Task(req.body)
 	saveTaskData.save(function(err, dataTask){
-		if (err) {res.send(err)}
+		if (err) {res.json({err})}
 			else{
 				res.json(dataTask)
 			}
@@ -91,7 +101,7 @@ app.post('/task', function(req, res){
 		var update = req.body
 		//update your database
 		Task.findByIdAndUpdate({_id : req.params.taskId}, update, function(err, data){
-			if (err) {res.send(err)}
+			if (err) {res.json({err})}
 				else{res.json(data)}
 		})
 	})
@@ -102,16 +112,30 @@ app.post('/task', function(req, res){
 		//get the task Id
 		var taskID = req.body //the req.params  is made available for use by the body parser module
 		Task.findByIdAndDelete({_id:req.params.taskId}, function(err,data){
-			if (err) {res.send(err)}
+			if (err) {res.json({err})}
 
 			console.log(data)
-			res.send('Task Deleted!')
+			res.json({
+			text: 'Task Deleted!'
+			})
 		})
 	})
 
 	//handle logout route
 	app.get('/logout', function(req, res){
-		res.send('Logout successful')
+		res.json({
+			text: 'Logout successful'
+		})
 	})
 })
+
+	//handle get method to get all task from database
+	app.get('/all_task', function(req, res){
+		Task.find({}, function(err, dara){
+			if(err){ res.json({err})}
+			else{
+				res.json(data)
+			}
+		})
+	})
 app.listen(port, function(){ console.log(`Server started at port ${port}`)})
