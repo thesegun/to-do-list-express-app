@@ -86,10 +86,10 @@ app.post('/task', function(req, res){
 	var taskData = req.body
 
 	var saveTaskData = new Task(req.body)
-	saveTaskData.save(function(err, dataTask){
+	saveTaskData.save(function(err, data){
 		if (err) {res.json({err})}
 			else{
-				res.json(dataTask)
+				res.json(data)
 			}
 
 		})
