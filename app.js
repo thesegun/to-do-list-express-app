@@ -3,7 +3,7 @@ var bodyParser = require('body-parser')
 var app = express()
 var mongoose = require('mongoose')
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 
 let uri = "mongodb+srv://thesegun:layomaserati@expressapp-cplmn.mongodb.net/expressapp?retryWrites=true"
 
